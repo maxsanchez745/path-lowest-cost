@@ -23,7 +23,25 @@ public class Tree {
     }
 
     public void generateTree() {
+        createChildren(rootNodes, 0);
+    }
 
+    private void createChildren(TreeNode[] treeNodes, int column) {
+        if (column + 1 >= grid[0].length) {
+            return;
+        }
+        for (TreeNode currentNode : treeNodes) {
+            TreeNode[] childrenNode = new TreeNode[3]; // Up, middle, down nodes
+            for (int j = 0; j < childrenNode.length; j++) {
+                childrenNode[j] = new TreeNode(currentNode.getRow() + 1, getWeight(currentNode.getRow(), column, j), currentNode.getWeight() + currentNode.getAccumulatedWeight(), null);
+            }
+            currentNode.setChildren(childrenNode);
+            createChildren(childrenNode, column + 1);
+        }
+    }
+
+    private int getWeight(int row, int column, int j) {
+        return 0;
     }
 
     public TreeNode[] getRootNodes() {

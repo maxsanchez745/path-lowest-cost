@@ -38,6 +38,7 @@ public class TreeTest {
                 {1, 1, 1}
         };
         Tree tree = new Tree(simpleGrid);
+        tree.generateTree();
         TreeNode rootNodesLeft = tree.getRootNodes()[0];
         int levels = 1;
         while (rootNodesLeft.getChildren() != null) {

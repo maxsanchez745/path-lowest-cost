@@ -32,4 +32,8 @@ public class TreeNode {
     public TreeNode[] getChildren() {
         return children;
     }
+
+    public void setChildren(TreeNode[] children) {
+        this.children = children;
+    }
 }
