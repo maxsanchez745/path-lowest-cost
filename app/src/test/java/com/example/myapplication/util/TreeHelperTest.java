@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class TreeHelperTest {
     @Test
-    public void onSimpleGrid_shouldReturnNineLeafs() throws Exception {
+    public void onSimpleGrid_shouldReturnTwentySevenLeafs() throws Exception {
         int[][] simpleGrid = {
                 {1, 0, 1},
                 {0, 1, 0},
