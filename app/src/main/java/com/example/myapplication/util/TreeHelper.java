@@ -21,6 +21,10 @@ public class TreeHelper {
         return levels;
     }
 
+    public static int getDepth(Tree tree) {
+        return getDepth(tree.getRootNodes()[0]);
+    }
+
     public static TreeNode getMostLeftNode(Tree tree) {
         TreeNode treeNode = tree.getRootNodes()[0];
         while (treeNode.getChildren() != null) {
