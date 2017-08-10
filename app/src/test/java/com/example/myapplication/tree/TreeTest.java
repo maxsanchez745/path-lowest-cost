@@ -4,6 +4,9 @@ import android.support.annotation.NonNull;
 
 import org.junit.Test;
 
+import static com.example.myapplication.util.TreeHelper.getLevels;
+import static com.example.myapplication.util.TreeHelper.getMostLeftNode;
+import static com.example.myapplication.util.TreeHelper.initTree;
 import static org.junit.Assert.*;
 
 /**
@@ -106,9 +109,7 @@ public class TreeTest {
         };
 
         Tree tree = initTree(simpleGrid);
-        TreeNode rootNodesLeft = tree.getRootNodes()[0];
-        TreeNode middleNode = rootNodesLeft.getChildren()[0];
-        TreeNode leafNode = middleNode.getChildren()[0];
+        TreeNode leafNode = getMostLeftNode(tree);
         final int accumulatedWeight = leafNode.getAccumulatedWeight();
 
         assertEquals("The leaf node " + leafNode + "should have accumulatedDepth 2", 2, accumulatedWeight);
@@ -125,31 +126,9 @@ public class TreeTest {
         };
 
         Tree tree = initTree(testGrid);
-
-        int accumulatedWeightMostLeftLeafNode = tree.getRootNodes()[0]
-                .getChildren()[0]
-                .getChildren()[0]
-                .getChildren()[0]
-                .getChildren()[0]
-                .getChildren()[0].getAccumulatedWeight();
+        final TreeNode mostLeftNode = getMostLeftNode(tree);
+        int accumulatedWeightMostLeftLeafNode = mostLeftNode.getAccumulatedWeight();
 
         assertEquals("The most left leaf node should have an accumulated weight of 27", 27, accumulatedWeightMostLeftLeafNode);
-    }
-
-    @NonNull
-    private Tree initTree(int[][] largeGrid) {
-        Tree tree = new Tree(largeGrid);
-        tree.generateTree();
-        return tree;
-    }
-
-    private int getLevels(TreeNode treeNode) {
-        TreeNode rootNodesLeft = treeNode;
-        int levels = 1;
-        while (rootNodesLeft.getChildren() != null) {
-            rootNodesLeft = rootNodesLeft.getChildren()[0];
-            levels++;
-        }
-        return levels;
     }
 }
