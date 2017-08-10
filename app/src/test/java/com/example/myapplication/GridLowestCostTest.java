@@ -136,4 +136,19 @@ public class GridLowestCostTest {
 
         GridLowestCost gridLowestCost = new GridLowestCost(emptyGrid);
     }
+
+    @Test
+    public void whenStartingWithNumberLargerThanFifty_shouldNotFindPath() throws Exception {
+        int[][] testGrid = {
+                {69, 10, 19, 10, 19},
+                {51, 23, 20, 19, 12},
+                {60, 12, 20, 11, 10}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
+
+        assertFalse("Eight sample grid should not have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should have weight 0 since there is no possible path!", 0, gridLowestCost.getCalculatedWeight());
+        assertArrayEquals("The path should be {} since there is not even one possible path!", new int[]{}, gridLowestCost.getPathTaken());
+    }
 }
