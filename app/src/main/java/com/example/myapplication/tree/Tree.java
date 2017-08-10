@@ -20,7 +20,7 @@ public class Tree {
 
     private void initializeRootNodes() {
         for (int i = 0; i < rootNodes.length; i++) {
-            rootNodes[i] = new TreeNode(1, grid[i][0], 0, null);
+            rootNodes[i] = new TreeNode(i, grid[i][0], 0, null);
         }
     }
 
