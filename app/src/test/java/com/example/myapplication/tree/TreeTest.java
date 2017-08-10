@@ -91,4 +91,18 @@ public class TreeTest {
 
         assertEquals("The 8x3 wideGrid generated-tree should have 8 levels", 8, levels);
     }
+
+    @Test
+    public void onSimpleTreeCreation_middleElementsShouldHaveAccumulatedWeight() throws Exception {
+        int[][] simpleGrid = {
+                {1, 0, 1},
+                {0, 1, 0},
+                {1, 1, 1}
+        };
+        Tree tree = new Tree(simpleGrid);
+        tree.generateTree();
+        TreeNode rootNodesLeft = tree.getRootNodes()[1];
+        TreeNode middleNode = rootNodesLeft.getChildren()[0];
+        assertEquals("The middle node " + middleNode + "should have accumulatedDepth 1", 1, middleNode.getAccumulatedWeight());
+    }
 }
