@@ -30,7 +30,7 @@ public class Tree {
             return;
         }
         for (TreeNode currentNode : treeNodes) {
-            TreeNode[] childrenNode = new TreeNode[3]; // Up, middle, down nodes
+            TreeNode[] childrenNode = new TreeNode[Math.min(3, grid.length)]; // Up, middle, down nodes
             for (int j = 0; j < childrenNode.length; j++) {
                 childrenNode[j] = generateChildNode(column, currentNode, j);
             }
