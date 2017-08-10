@@ -166,4 +166,20 @@ public class GridLowestCostTest {
         assertEquals("Lowest path should have weight 14!", 14, gridLowestCost.getCalculatedWeight());
         assertArrayEquals("The path should be {3, 2, 1, 3}!", new int[]{3, 2, 1, 3}, gridLowestCost.getPathTaken());
     }
+
+    @Test
+    public void whenMatrixWithNegativeNumbers_shouldFindPath() throws Exception {
+        int[][] testGrid = {
+                {6, 3, -5, 9},
+                {-5, 2, 4, 10},
+                {3, -2, 6, 10},
+                {6, -1, -2, 10}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
+
+        assertTrue("Tenth sample grid should have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should have weight 0!", 0, gridLowestCost.getCalculatedWeight());
+        assertArrayEquals("The path should be {2, 3, 4, 1}!", new int[]{2, 3, 4, 1}, gridLowestCost.getPathTaken());
+    }
 }
