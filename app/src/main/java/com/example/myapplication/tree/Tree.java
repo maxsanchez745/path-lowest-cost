@@ -2,8 +2,6 @@ package com.example.myapplication.tree;
 
 import android.support.annotation.NonNull;
 
-import java.util.Arrays;
-
 /**
  * Created by evin on 8/9/17.
  */
