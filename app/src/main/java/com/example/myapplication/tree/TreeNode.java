@@ -7,7 +7,7 @@ package com.example.myapplication.tree;
 public class TreeNode {
     private int row;
     private int weight;
-    private int accumulatedWeight;
+    private Integer accumulatedWeight;
     private TreeNode[] children;
     private TreeNode parent;
 
@@ -27,7 +27,7 @@ public class TreeNode {
         return weight;
     }
 
-    public int getAccumulatedWeight() {
+    public Integer getAccumulatedWeight() {
         return accumulatedWeight;
     }
 
@@ -45,5 +45,14 @@ public class TreeNode {
 
     public void setParent(TreeNode parent) {
         this.parent = parent;
+    }
+
+    @Override
+    public String toString() {
+        return "TreeNode{" +
+                "row=" + row +
+                ", weight=" + weight +
+                ", accumulatedWeight=" + accumulatedWeight +
+                '}';
     }
 }

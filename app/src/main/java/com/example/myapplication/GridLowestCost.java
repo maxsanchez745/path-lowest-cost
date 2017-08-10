@@ -1,6 +1,14 @@
 package com.example.myapplication;
 
 import com.example.myapplication.tree.Tree;
+import com.example.myapplication.tree.TreeNode;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import static com.example.myapplication.util.TreeHelper.generateTree;
+import static com.example.myapplication.util.TreeHelper.getLeafs;
 
 /**
  * Created by user on 8/9/17.
@@ -24,9 +32,25 @@ public class GridLowestCost {
     }
 
     public boolean calculatePath() {
-        Tree tree = new Tree(grid);
-        tree.generateTree();
-        return false;
+        Tree tree = generateTree(grid);
+        ArrayList<TreeNode> leafs = getLeafs(tree);
+
+        Collections.sort(leafs, new Comparator<TreeNode>() {
+            @Override
+            public int compare(TreeNode t1, TreeNode t2) {
+                return compareFinalWeights(t1, t2);
+            }
+        });
+
+        TreeNode lowestCostNode = leafs.get(0);
+        calculatedWeight = lowestCostNode.getAccumulatedWeight() + lowestCostNode.getWeight();
+        return calculatedWeight < 50;
+    }
+
+    private int compareFinalWeights(TreeNode t1, TreeNode t2) {
+        Integer finalWeight1 = t1.getWeight() + t1.getAccumulatedWeight();
+        Integer finalWeight2 = t2.getWeight() + t2.getAccumulatedWeight();
+        return finalWeight1.compareTo(finalWeight2);
     }
 
     public int getCalculatedWeight() {

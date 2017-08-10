@@ -24,7 +24,7 @@ public class Tree {
         }
     }
 
-    public void generateTree() {
+    public void buildTree() {
         createChildren(rootNodes, 0);
     }
 

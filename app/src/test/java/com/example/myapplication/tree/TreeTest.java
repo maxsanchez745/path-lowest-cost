@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static com.example.myapplication.util.TreeHelper.getDepth;
 import static com.example.myapplication.util.TreeHelper.getMostLeftNode;
-import static com.example.myapplication.util.TreeHelper.initTree;
+import static com.example.myapplication.util.TreeHelper.generateTree;
 import static org.junit.Assert.*;
 
 /**
@@ -25,7 +25,7 @@ public class TreeTest {
         TreeNode[] rootNodes = tree.getRootNodes();
 
         for (int i = 0; i < rootNodes.length; i++) {
-            assertEquals("The accumulated weight of the root nodes should be 0!", 0, rootNodes[i].getAccumulatedWeight());
+            assertEquals("The accumulated weight of the root nodes should be 0!", 0, rootNodes[i].getAccumulatedWeight().intValue());
         }
         for (int i = 0; i < rootNodes.length; i++) {
             assertEquals("The initial weight should match the first value of each row!" + i, simpleGrid[i][0], rootNodes[i].getWeight());
@@ -43,7 +43,7 @@ public class TreeTest {
                 {1, 1, 1}
         };
 
-        Tree tree = initTree(simpleGrid);
+        Tree tree = generateTree(simpleGrid);
         int levels = getDepth(tree.getRootNodes()[0]);
 
         assertEquals("The 3x3 simpleGrid generated-tree should have 3 levels", 3, levels);
@@ -62,7 +62,7 @@ public class TreeTest {
                 {1, 1, 1}
         };
 
-        Tree tree = initTree(largeGrid);
+        Tree tree = generateTree(largeGrid);
         int levels = getDepth(tree.getRootNodes()[0]);
 
         assertEquals("The 3x8 largeGrid generated-tree should have 3 levels", 3, levels);
@@ -76,7 +76,7 @@ public class TreeTest {
                 {1, 1, 1, 0, 1, 0, 1, 0}
         };
 
-        Tree tree = initTree(wideGrid);
+        Tree tree = generateTree(wideGrid);
         int levels = getDepth(tree.getRootNodes()[0]);
 
         assertEquals("The 8x3 wideGrid generated-tree should have 8 levels", 8, levels);
@@ -90,7 +90,7 @@ public class TreeTest {
                 {1, 1, 1}
         };
 
-        Tree tree = initTree(simpleGrid);
+        Tree tree = generateTree(simpleGrid);
         TreeNode rootNodesLeft = tree.getRootNodes()[0];
         TreeNode middleNode = rootNodesLeft.getChildren()[0];
         final int accumulatedWeight = middleNode.getAccumulatedWeight();
@@ -106,7 +106,7 @@ public class TreeTest {
                 {1, 1, 1}
         };
 
-        Tree tree = initTree(simpleGrid);
+        Tree tree = generateTree(simpleGrid);
         TreeNode leafNode = getMostLeftNode(tree);
         final int accumulatedWeight = leafNode.getAccumulatedWeight();
 
@@ -123,7 +123,7 @@ public class TreeTest {
                 {3, 7, 2, 8, 6, 4}
         };
 
-        Tree tree = initTree(testGrid);
+        Tree tree = generateTree(testGrid);
         final TreeNode mostLeftNode = getMostLeftNode(tree);
         int accumulatedWeightMostLeftLeafNode = mostLeftNode.getAccumulatedWeight();
 

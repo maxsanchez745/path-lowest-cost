@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 public class TreeHelper {
     @NonNull
-    public static Tree initTree(int[][] largeGrid) {
+    public static Tree generateTree(int[][] largeGrid) {
         Tree tree = new Tree(largeGrid);
-        tree.generateTree();
+        tree.buildTree();
         return tree;
     }
 
