@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.myapplication.exception.InvalidMatrixException;
+
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -47,8 +49,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void generateLowestPath() {
-        gridLowestCost = new GridLowestCost(grid);
-        gridLowestCost.calculatePath();
+        try {
+            gridLowestCost = new GridLowestCost(grid);
+            gridLowestCost.calculatePath();
+        } catch (Exception e) {
+            throw new InvalidMatrixException();
+        }
         boolean pathExists = gridLowestCost.calculatePath();
 
         textViewHasPath.setText(pathExists ? "Yes" : "No");
