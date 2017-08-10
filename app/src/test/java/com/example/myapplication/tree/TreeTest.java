@@ -26,7 +26,7 @@ public class TreeTest {
             assertEquals("The initial weight should match the first value of each row!" + i, simpleGrid[i][0], rootNodes[i].getWeight());
         }
         for (int i = 0; i < rootNodes.length; i++) {
-            assertEquals("The initial row of the rootNodes should be 1" + i, 1, rootNodes[i].getRow());
+            assertEquals("The initial row of the rootNodes should be " + i, i, rootNodes[i].getRow());
         }
     }
 
