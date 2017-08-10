@@ -26,6 +26,6 @@ public class TreeHelperTest {
         Tree tree = initTree(simpleGrid);
         final ArrayList<TreeNode> leafs = getLeafs(tree);
 
-        assertEquals("There should be 9 leafs on this tree!", 9, leafs.size());
+        assertEquals("There should be 27 leafs on this tree!", 27, leafs.size());
     }
 }
