@@ -3,7 +3,7 @@
 You guys can watch the commit history, so you can see how did I work through the problem using **TDD**. 
 I solved it generating a B-tree that stored the accumulated weights and possible future paths.
 
-You can see below the main unit test suite, I followed the red-green-refactor principle with TDD creating each test case one by one along with its implementation.
+You can see below the main unit test suite (I created test cases on some other important classes in the project as well, these can be seen in the [test folder](https://github.com/maxsanchez745/path-lowest-cost/tree/master/app/src/test/java/com/example/myapplication)), I followed the red-green-refactor principle with TDD creating each test case one by one along with its implementation. All the test cases are passing.
 
 ---
 
