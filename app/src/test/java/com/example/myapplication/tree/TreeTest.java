@@ -29,4 +29,22 @@ public class TreeTest {
             assertEquals("The initial row of the rootNodes should be 1" + i, 1, rootNodes[i].getRow());
         }
     }
+
+    @Test
+    public void onSimpleTreeCreation_shouldGenerateLevels() throws Exception {
+        int[][] simpleGrid = {
+                {1, 0, 1},
+                {0, 1, 0},
+                {1, 1, 1}
+        };
+        Tree tree = new Tree(simpleGrid);
+        TreeNode rootNodesLeft = tree.getRootNodes()[0];
+        int levels = 1;
+        while (rootNodesLeft.getChildren() != null) {
+            rootNodesLeft = rootNodesLeft.getChildren()[0];
+            levels++;
+        }
+
+        assertEquals("The 3x3 simpleGrid generated-tree should have 3 levels", 3, levels);
+    }
 }
