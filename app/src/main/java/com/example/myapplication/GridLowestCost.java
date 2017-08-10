@@ -5,8 +5,8 @@ import com.example.myapplication.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
+import static com.example.myapplication.util.TreeHelper.getDepth;
 import static com.example.myapplication.util.TreeHelper.getLeafs;
 
 /**
@@ -30,13 +30,25 @@ public class GridLowestCost {
 
     public boolean calculatePath() {
         Tree tree = new Tree(grid);
+        int depth = getDepth(tree.getRootNodes()[0]);
         ArrayList<TreeNode> leafs = getLeafs(tree);
 
         Collections.sort(leafs, this::compareFinalWeights);
 
         TreeNode lowestCostNode = leafs.get(0);
         calculatedWeight = lowestCostNode.getAccumulatedWeight() + lowestCostNode.getWeight();
+        pathTaken = traversePath(lowestCostNode, depth);
         return calculatedWeight < 50;
+    }
+
+    private int[] traversePath(TreeNode node, int depth) {
+        int[] path = new int[depth];
+        int i = 0;
+        while (node != null) {
+            path[i++] = node.getRow();
+            node = node.getParent();
+        }
+        return path;
     }
 
     private int compareFinalWeights(TreeNode t1, TreeNode t2) {

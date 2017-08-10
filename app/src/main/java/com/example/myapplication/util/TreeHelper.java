@@ -13,10 +13,9 @@ import java.util.ArrayList;
 
 public class TreeHelper {
     public static int getDepth(TreeNode treeNode) {
-        TreeNode rootNodesLeft = treeNode;
         int levels = 1;
-        while (rootNodesLeft.getChildren() != null) {
-            rootNodesLeft = rootNodesLeft.getChildren()[0];
+        while (treeNode.getChildren() != null) {
+            treeNode = treeNode.getChildren()[0];
             levels++;
         }
         return levels;
