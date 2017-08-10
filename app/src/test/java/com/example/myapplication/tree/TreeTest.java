@@ -105,4 +105,19 @@ public class TreeTest {
         TreeNode middleNode = rootNodesLeft.getChildren()[0];
         assertEquals("The middle node " + middleNode + "should have accumulatedDepth 1", 1, middleNode.getAccumulatedWeight());
     }
+
+    @Test
+    public void onSimpleTreeCreation_leafElementsShouldHaveAccumulatedWeight() throws Exception {
+        int[][] simpleGrid = {
+                {1, 0, 1},
+                {0, 1, 0},
+                {1, 1, 1}
+        };
+        Tree tree = new Tree(simpleGrid);
+        tree.generateTree();
+        TreeNode rootNodesLeft = tree.getRootNodes()[0];
+        TreeNode middleNode = rootNodesLeft.getChildren()[0];
+        TreeNode leafNode = middleNode.getChildren()[0];
+        assertEquals("The leaf node " + leafNode + "should have accumulatedDepth 2", 2, leafNode.getAccumulatedWeight());
+    }
 }
