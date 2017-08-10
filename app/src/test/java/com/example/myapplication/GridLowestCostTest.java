@@ -138,7 +138,7 @@ public class GridLowestCostTest {
     }
 
     @Test
-    public void whenStartingWithNumberLargerThanFifty_shouldNotFindPath() throws Exception {
+    public void whenStartingWithNumbersLargerThanFifty_shouldNotFindPath() throws Exception {
         int[][] testGrid = {
                 {69, 10, 19, 10, 19},
                 {51, 23, 20, 19, 12},
@@ -150,5 +150,20 @@ public class GridLowestCostTest {
         assertFalse("Eight sample grid should not have a path!", gridLowestCost.calculatePath());
         assertEquals("Lowest path should have weight 0 since there is no possible path!", 0, gridLowestCost.getCalculatedWeight());
         assertArrayEquals("The path should be {} since there is not even one possible path!", new int[]{}, gridLowestCost.getPathTaken());
+    }
+
+    @Test
+    public void whenOneValueLargerThanFifty_shouldFindPath() throws Exception {
+        int[][] testGrid = {
+                {60, 3, 3, 6},
+                {6, 3, 7, 9},
+                {5, 6, 8, 3}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
+
+        assertTrue("Ninth sample grid should have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should have weight 14!", 14, gridLowestCost.getCalculatedWeight());
+        assertArrayEquals("The path should be {3, 2, 1, 3}!", new int[]{3, 2, 1, 3}, gridLowestCost.getPathTaken());
     }
 }
