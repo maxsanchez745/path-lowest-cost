@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static com.example.myapplication.util.TreeHelper.getDepth;
 import static com.example.myapplication.util.TreeHelper.getMostLeftNode;
-import static com.example.myapplication.util.TreeHelper.generateTree;
 import static org.junit.Assert.*;
 
 /**
@@ -43,7 +42,7 @@ public class TreeTest {
                 {1, 1, 1}
         };
 
-        Tree tree = generateTree(simpleGrid);
+        Tree tree = new Tree(simpleGrid);
         int levels = getDepth(tree.getRootNodes()[0]);
 
         assertEquals("The 3x3 simpleGrid generated-tree should have 3 levels", 3, levels);
@@ -62,7 +61,7 @@ public class TreeTest {
                 {1, 1, 1}
         };
 
-        Tree tree = generateTree(largeGrid);
+        Tree tree = new Tree(largeGrid);
         int levels = getDepth(tree.getRootNodes()[0]);
 
         assertEquals("The 3x8 largeGrid generated-tree should have 3 levels", 3, levels);
@@ -76,7 +75,7 @@ public class TreeTest {
                 {1, 1, 1, 0, 1, 0, 1, 0}
         };
 
-        Tree tree = generateTree(wideGrid);
+        Tree tree = new Tree(wideGrid);
         int levels = getDepth(tree.getRootNodes()[0]);
 
         assertEquals("The 8x3 wideGrid generated-tree should have 8 levels", 8, levels);
@@ -90,7 +89,7 @@ public class TreeTest {
                 {1, 1, 1}
         };
 
-        Tree tree = generateTree(simpleGrid);
+        Tree tree = new Tree(simpleGrid);
         TreeNode rootNodesLeft = tree.getRootNodes()[0];
         TreeNode middleNode = rootNodesLeft.getChildren()[0];
         final int accumulatedWeight = middleNode.getAccumulatedWeight();
@@ -106,7 +105,7 @@ public class TreeTest {
                 {1, 1, 1}
         };
 
-        Tree tree = generateTree(simpleGrid);
+        Tree tree = new Tree(simpleGrid);
         TreeNode leafNode = getMostLeftNode(tree);
         final int accumulatedWeight = leafNode.getAccumulatedWeight();
 
@@ -123,7 +122,7 @@ public class TreeTest {
                 {3, 7, 2, 8, 6, 4}
         };
 
-        Tree tree = generateTree(testGrid);
+        Tree tree = new Tree(testGrid);
         final TreeNode mostLeftNode = getMostLeftNode(tree);
         int accumulatedWeightMostLeftLeafNode = mostLeftNode.getAccumulatedWeight();
 

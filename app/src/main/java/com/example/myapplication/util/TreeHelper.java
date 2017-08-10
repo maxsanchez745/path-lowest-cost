@@ -12,13 +12,6 @@ import java.util.ArrayList;
  */
 
 public class TreeHelper {
-    @NonNull
-    public static Tree generateTree(int[][] largeGrid) {
-        Tree tree = new Tree(largeGrid);
-        tree.buildTree();
-        return tree;
-    }
-
     public static int getDepth(TreeNode treeNode) {
         TreeNode rootNodesLeft = treeNode;
         int levels = 1;

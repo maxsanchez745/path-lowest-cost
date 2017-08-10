@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import static com.example.myapplication.util.TreeHelper.generateTree;
 import static com.example.myapplication.util.TreeHelper.getLeafs;
 
 /**
@@ -32,7 +31,7 @@ public class GridLowestCost {
     }
 
     public boolean calculatePath() {
-        Tree tree = generateTree(grid);
+        Tree tree = new Tree(grid);
         ArrayList<TreeNode> leafs = getLeafs(tree);
 
         Collections.sort(leafs, new Comparator<TreeNode>() {

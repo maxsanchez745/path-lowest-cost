@@ -16,16 +16,13 @@ public class Tree {
         this.rootNodes = new TreeNode[grid.length];
 
         initializeRootNodes();
+        createChildren(rootNodes, 0);
     }
 
     private void initializeRootNodes() {
         for (int i = 0; i < rootNodes.length; i++) {
             rootNodes[i] = new TreeNode(i, grid[i][0], 0, null, null);
         }
-    }
-
-    public void buildTree() {
-        createChildren(rootNodes, 0);
     }
 
     private void createChildren(TreeNode[] treeNodes, int column) {
