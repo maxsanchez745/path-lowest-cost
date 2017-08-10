@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import com.example.myapplication.exception.InvalidMatrixException;
 import com.example.myapplication.tree.Tree;
 import com.example.myapplication.tree.TreeNode;
 import com.example.myapplication.util.TreeHelper;
@@ -20,10 +21,31 @@ public class GridLowestCost {
     private int[] pathTaken;
 
     public GridLowestCost(int[][] grid) {
+        if (grid.length < 1) {
+            throw new InvalidMatrixException();
+        }
         this.grid = grid;
 
         calculatedWeight = 0;
         pathTaken = null;
+    }
+
+    public GridLowestCost(Object[][] objectGrid) {
+        if (objectGrid.length < 1) {
+            throw new InvalidMatrixException();
+        }
+        this.grid = new int[objectGrid.length][objectGrid[0].length];
+        for (int i = 0; i < objectGrid.length; i++) {
+            for (int j = 0; j < objectGrid[i].length; j++) {
+                final int gridValue;
+                try {
+                    gridValue = Integer.parseInt(String.valueOf(objectGrid[i][j]));
+                    this.grid[i][j] = gridValue;
+                } catch (NumberFormatException e) {
+                    throw new InvalidMatrixException();
+                }
+            }
+        }
     }
 
     public boolean calculatePath() {
