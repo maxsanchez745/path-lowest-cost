@@ -1,5 +1,7 @@
 package com.example.myapplication.tree;
 
+import android.support.annotation.NonNull;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -17,8 +19,10 @@ public class TreeTest {
                 {0, 1, 0},
                 {1, 1, 1}
         };
+
         Tree tree = new Tree(simpleGrid);
         TreeNode[] rootNodes = tree.getRootNodes();
+
         for (int i = 0; i < rootNodes.length; i++) {
             assertEquals("The accumulated weight of the root nodes should be 0!", 0, rootNodes[i].getAccumulatedWeight());
         }
@@ -37,14 +41,9 @@ public class TreeTest {
                 {0, 1, 0},
                 {1, 1, 1}
         };
-        Tree tree = new Tree(simpleGrid);
-        tree.generateTree();
-        TreeNode rootNodesLeft = tree.getRootNodes()[0];
-        int levels = 1;
-        while (rootNodesLeft.getChildren() != null) {
-            rootNodesLeft = rootNodesLeft.getChildren()[0];
-            levels++;
-        }
+
+        Tree tree = initTree(simpleGrid);
+        int levels = getLevels(tree.getRootNodes()[0]);
 
         assertEquals("The 3x3 simpleGrid generated-tree should have 3 levels", 3, levels);
     }
@@ -61,14 +60,9 @@ public class TreeTest {
                 {1, 1, 1},
                 {1, 1, 1}
         };
-        Tree tree = new Tree(largeGrid);
-        tree.generateTree();
-        TreeNode rootNodesLeft = tree.getRootNodes()[0];
-        int levels = 1;
-        while (rootNodesLeft.getChildren() != null) {
-            rootNodesLeft = rootNodesLeft.getChildren()[0];
-            levels++;
-        }
+
+        Tree tree = initTree(largeGrid);
+        int levels = getLevels(tree.getRootNodes()[0]);
 
         assertEquals("The 3x8 largeGrid generated-tree should have 3 levels", 3, levels);
     }
@@ -80,14 +74,9 @@ public class TreeTest {
                 {0, 1, 0, 0, 0, 1, 0, 1},
                 {1, 1, 1, 0, 1, 0, 1, 0}
         };
-        Tree tree = new Tree(wideGrid);
-        tree.generateTree();
-        TreeNode rootNodesLeft = tree.getRootNodes()[0];
-        int levels = 1;
-        while (rootNodesLeft.getChildren() != null) {
-            rootNodesLeft = rootNodesLeft.getChildren()[0];
-            levels++;
-        }
+
+        Tree tree = initTree(wideGrid);
+        int levels = getLevels(tree.getRootNodes()[0]);
 
         assertEquals("The 8x3 wideGrid generated-tree should have 8 levels", 8, levels);
     }
@@ -99,11 +88,13 @@ public class TreeTest {
                 {0, 1, 0},
                 {1, 1, 1}
         };
-        Tree tree = new Tree(simpleGrid);
-        tree.generateTree();
+
+        Tree tree = initTree(simpleGrid);
         TreeNode rootNodesLeft = tree.getRootNodes()[0];
         TreeNode middleNode = rootNodesLeft.getChildren()[0];
-        assertEquals("The middle node " + middleNode + "should have accumulatedDepth 1", 1, middleNode.getAccumulatedWeight());
+        final int accumulatedWeight = middleNode.getAccumulatedWeight();
+
+        assertEquals("The middle node " + middleNode + "should have accumulatedDepth 1", 1, accumulatedWeight);
     }
 
     @Test
@@ -113,12 +104,14 @@ public class TreeTest {
                 {0, 1, 0},
                 {1, 1, 1}
         };
-        Tree tree = new Tree(simpleGrid);
-        tree.generateTree();
+
+        Tree tree = initTree(simpleGrid);
         TreeNode rootNodesLeft = tree.getRootNodes()[0];
         TreeNode middleNode = rootNodesLeft.getChildren()[0];
         TreeNode leafNode = middleNode.getChildren()[0];
-        assertEquals("The leaf node " + leafNode + "should have accumulatedDepth 2", 2, leafNode.getAccumulatedWeight());
+        final int accumulatedWeight = leafNode.getAccumulatedWeight();
+
+        assertEquals("The leaf node " + leafNode + "should have accumulatedDepth 2", 2, accumulatedWeight);
     }
 
     @Test
@@ -131,8 +124,7 @@ public class TreeTest {
                 {3, 7, 2, 8, 6, 4}
         };
 
-        Tree tree = new Tree(testGrid);
-        tree.generateTree();
+        Tree tree = initTree(testGrid);
 
         int accumulatedWeightMostLeftLeafNode = tree.getRootNodes()[0]
                 .getChildren()[0]
@@ -142,5 +134,22 @@ public class TreeTest {
                 .getChildren()[0].getAccumulatedWeight();
 
         assertEquals("The most left leaf node should have an accumulated weight of 27", 27, accumulatedWeightMostLeftLeafNode);
+    }
+
+    @NonNull
+    private Tree initTree(int[][] largeGrid) {
+        Tree tree = new Tree(largeGrid);
+        tree.generateTree();
+        return tree;
+    }
+
+    private int getLevels(TreeNode treeNode) {
+        TreeNode rootNodesLeft = treeNode;
+        int levels = 1;
+        while (rootNodesLeft.getChildren() != null) {
+            rootNodesLeft = rootNodesLeft.getChildren()[0];
+            levels++;
+        }
+        return levels;
     }
 }
