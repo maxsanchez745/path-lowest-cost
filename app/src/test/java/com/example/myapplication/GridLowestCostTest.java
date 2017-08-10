@@ -129,4 +129,11 @@ public class GridLowestCostTest {
 
         GridLowestCost gridLowestCost = new GridLowestCost(invalidGrid);
     }
+
+    @Test(expected = InvalidMatrixException.class)
+    public void whenEmptyMatrix_shouldThrowInvalidMatrixException() {
+        Object[][] emptyGrid = {};
+
+        GridLowestCost gridLowestCost = new GridLowestCost(emptyGrid);
+    }
 }
