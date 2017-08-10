@@ -48,4 +48,51 @@ public class TreeHelper {
             }
         }
     }
+
+    public static TreeNode findLowestNodeBeforeMax(Tree tree, int maximumWeight) {
+        TreeTraverse treeTraverse = new TreeTraverse(maximumWeight);
+        return treeTraverse.traverse(tree);
+    }
+
+    public static int calculateDistanceFromRoot(TreeNode lowestBeforeMax) {
+        int aux = 0;
+        while (lowestBeforeMax != null) {
+            aux++;
+            lowestBeforeMax = lowestBeforeMax.getParent();
+        }
+        return aux;
+    }
+
+    private static class TreeTraverse {
+        private TreeNode treeNode;
+        private int maxValue;
+
+        private TreeTraverse(int maxValue) {
+            this.maxValue = maxValue;
+        }
+
+        private TreeNode traverse(Tree tree) {
+            for (TreeNode node : tree.getRootNodes()) {
+                traverseTreeRecursive(node);
+            }
+            return treeNode;
+        }
+
+        private void traverseTreeRecursive(TreeNode currentNode) {
+            if (treeNode == null) {
+                treeNode = currentNode;
+                return;
+            }
+            final int totalWeightCurrentNode = currentNode.getAccumulatedWeight() + currentNode.getWeight();
+            final int totalWeightMaxNode = treeNode.getAccumulatedWeight() + treeNode.getWeight();
+            if (totalWeightCurrentNode > totalWeightMaxNode && totalWeightCurrentNode < maxValue) {
+                treeNode = currentNode;
+            }
+            if (currentNode.getChildren() != null) {
+                for (TreeNode node : currentNode.getChildren()) {
+                    traverseTreeRecursive(node);
+                }
+            }
+        }
+    }
 }

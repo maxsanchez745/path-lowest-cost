@@ -34,9 +34,17 @@ public class GridLowestCost {
         Collections.sort(leafs, this::compareFinalWeights);
 
         TreeNode lowestCostNode = leafs.get(0);
+
         calculatedWeight = lowestCostNode.getAccumulatedWeight() + lowestCostNode.getWeight();
-        pathTaken = traversePath(lowestCostNode, depth);
-        return calculatedWeight < 50;
+        if (calculatedWeight < 50) {
+            pathTaken = traversePath(lowestCostNode, depth);
+            return true;
+        }
+
+        TreeNode lowestBeforeMax = TreeHelper.findLowestNodeBeforeMax(tree, MAXIMUM_WEIGHT);
+        calculatedWeight = lowestBeforeMax.getAccumulatedWeight() + lowestBeforeMax.getWeight();
+        pathTaken = traversePath(lowestBeforeMax, TreeHelper.calculateDistanceFromRoot(lowestBeforeMax));
+        return false;
     }
 
     private int[] traversePath(TreeNode node, int depth) {
