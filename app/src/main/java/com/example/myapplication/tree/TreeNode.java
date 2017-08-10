@@ -9,12 +9,14 @@ public class TreeNode {
     private int weight;
     private int accumulatedWeight;
     private TreeNode[] children;
+    private TreeNode parent;
 
-    public TreeNode(int row, int weight, int accumulatedWeight, TreeNode[] children) {
+    public TreeNode(int row, int weight, int accumulatedWeight, TreeNode[] children, TreeNode parent) {
         this.row = row;
         this.weight = weight;
         this.accumulatedWeight = accumulatedWeight;
         this.children = children;
+        this.parent = parent;
     }
 
     public int getRow() {
@@ -35,5 +37,13 @@ public class TreeNode {
 
     public void setChildren(TreeNode[] children) {
         this.children = children;
+    }
+
+    public TreeNode getParent() {
+        return parent;
+    }
+
+    public void setParent(TreeNode parent) {
+        this.parent = parent;
     }
 }

@@ -20,7 +20,7 @@ public class Tree {
 
     private void initializeRootNodes() {
         for (int i = 0; i < rootNodes.length; i++) {
-            rootNodes[i] = new TreeNode(i, grid[i][0], 0, null);
+            rootNodes[i] = new TreeNode(i, grid[i][0], 0, null, null);
         }
     }
 
@@ -49,7 +49,7 @@ public class Tree {
         final int accumulatedWeight = currentNode.getAccumulatedWeight();
         final int newRow = calculateNewRow(row, j);
         final int newWeight = getWeight(newRow, column + 1);
-        return new TreeNode(newRow, newWeight, weight + accumulatedWeight, null);
+        return new TreeNode(newRow, newWeight, weight + accumulatedWeight, null, currentNode);
     }
 
     private int calculateNewRow(int row, int j) {

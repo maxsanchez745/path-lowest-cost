@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import com.example.myapplication.tree.Tree;
 import com.example.myapplication.tree.TreeNode;
 
+import java.util.ArrayList;
+
 /**
  * Created by user on 8/10/17.
  */
@@ -33,5 +35,9 @@ public class TreeHelper {
             treeNode = treeNode.getChildren()[0];
         }
         return treeNode;
+    }
+
+    public static ArrayList<TreeNode> getLeafs(Tree tree) {
+        return null;
     }
 }
