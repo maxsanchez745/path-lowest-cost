@@ -20,4 +20,17 @@ public class GridLowestCostTest {
         assertTrue("Simple 3x3 grid should have a path!", gridLowestCost.calculatePath());
         assertEquals("Lowest path should have weight 0!", 0, gridLowestCost.getCalculatedWeight());
     }
+
+    @Test
+    public void whenSimple3x3NonZeroWeight_shouldCalculateTotalWeight() throws Exception {
+        int[][] simpleGrid = {
+                {1, 0, 1},
+                {0, 1, 1},
+                {1, 1, 1}
+        };
+        GridLowestCost gridLowestCost = new GridLowestCost(simpleGrid);
+
+        assertTrue("Simple 3x3 grid should have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should have weight 1!", 1, gridLowestCost.getCalculatedWeight());
+    }
 }
