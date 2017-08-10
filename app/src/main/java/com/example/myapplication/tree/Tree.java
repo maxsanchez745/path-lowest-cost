@@ -23,4 +23,8 @@ public class Tree {
     public void generateTree() {
 
     }
+
+    public TreeNode[] getRootNodes() {
+        return rootNodes;
+    }
 }

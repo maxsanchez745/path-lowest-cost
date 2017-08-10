@@ -16,4 +16,20 @@ public class TreeNode {
         this.accumulatedWeight = accumulatedWeight;
         this.children = children;
     }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getAccumulatedWeight() {
+        return accumulatedWeight;
+    }
+
+    public TreeNode[] getChildren() {
+        return children;
+    }
 }
