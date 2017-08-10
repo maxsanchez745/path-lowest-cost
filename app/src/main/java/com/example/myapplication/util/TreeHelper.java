@@ -38,6 +38,18 @@ public class TreeHelper {
     }
 
     public static ArrayList<TreeNode> getLeafs(Tree tree) {
-        return null;
+        ArrayList<TreeNode> leafs = new ArrayList<>();
+        findLeafs(tree.getRootNodes(), leafs);
+        return leafs;
+    }
+
+    private static void findLeafs(TreeNode[] treeNodes, ArrayList<TreeNode> leafs) {
+        for (TreeNode treeNode : treeNodes) {
+            if (treeNode.getChildren() == null) {
+                leafs.add(treeNode);
+            } else {
+                findLeafs(treeNode.getChildren(), leafs);
+            }
+        }
     }
 }
