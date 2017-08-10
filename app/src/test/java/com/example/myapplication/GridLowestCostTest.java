@@ -81,8 +81,21 @@ public class GridLowestCostTest {
 
         GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
 
-        assertFalse("Second simple 6x5 grid should have a path!", gridLowestCost.calculatePath());
+        assertFalse("Third simple 5x3 grid should have a path!", gridLowestCost.calculatePath());
         assertEquals("Lowest path should have weight 49 even when path it's not found!", 49, gridLowestCost.getCalculatedWeight());
         assertArrayEquals("The path should be {3, 1, 1} since there is no path!", new int[]{3, 1, 1}, gridLowestCost.getPathTaken());
+    }
+
+    @Test
+    public void when1x5NoPathMatrix_shouldFindPath() throws Exception {
+        int[][] testGrid = {
+                {5, 8, 5, 3, 5}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
+
+        assertFalse("Third sample 1x5 grid should have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should have weight 26!", 49, gridLowestCost.getCalculatedWeight());
+        assertArrayEquals("The path should be {1, 1, 1, 1, 1} since there is no path!", new int[]{3, 1, 1}, gridLowestCost.getPathTaken());
     }
 }
