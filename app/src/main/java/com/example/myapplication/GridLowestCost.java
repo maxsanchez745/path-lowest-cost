@@ -31,7 +31,7 @@ public class GridLowestCost {
     }
 
     public GridLowestCost(Object[][] objectGrid) {
-        if (objectGrid.length < 1) {
+        if (objectGrid == null || objectGrid.length < 1) {
             throw new InvalidMatrixException();
         }
         this.grid = new int[objectGrid.length][objectGrid[0].length];
