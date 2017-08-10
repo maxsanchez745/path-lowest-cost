@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import com.example.myapplication.exception.InvalidMatrixException;
+
 import org.junit.Test;
 
-import java.util.Arrays;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by evin on 8/9/17.
@@ -114,5 +117,16 @@ public class GridLowestCostTest {
         assertTrue("Fifth sample 5x1 grid should have a path!", gridLowestCost.calculatePath());
         assertEquals("Lowest path should have weight 3!", 3, gridLowestCost.getCalculatedWeight());
         assertArrayEquals("The path should be {4}!", new int[]{4}, gridLowestCost.getPathTaken());
+    }
+
+    @Test(expected = InvalidMatrixException.class)
+    public void whenNonNumericInput_shouldThrowInvalidMatrixException() {
+        Object[][] invalidGrid = {
+                {5, 4, "H"},
+                {8, "M", 7},
+                {5, 7, 5}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(invalidGrid);
     }
 }
