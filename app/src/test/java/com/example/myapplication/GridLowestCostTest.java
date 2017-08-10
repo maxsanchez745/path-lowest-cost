@@ -83,19 +83,36 @@ public class GridLowestCostTest {
 
         assertFalse("Third simple 5x3 grid should have a path!", gridLowestCost.calculatePath());
         assertEquals("Lowest path should have weight 49 even when path it's not found!", 49, gridLowestCost.getCalculatedWeight());
-        assertArrayEquals("The path should be {3, 1, 1} since there is no path!", new int[]{3, 1, 1}, gridLowestCost.getPathTaken());
+        assertArrayEquals("The path should be {3, 1, 1}, this is the lowest path!", new int[]{3, 1, 1}, gridLowestCost.getPathTaken());
     }
 
     @Test
-    public void when1x5NoPathMatrix_shouldFindPath() throws Exception {
+    public void when1x5Matrix_shouldFindPath() throws Exception {
         int[][] testGrid = {
                 {5, 8, 5, 3, 5}
         };
 
         GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
 
-        assertTrue("Third sample 1x5 grid should have a path!", gridLowestCost.calculatePath());
+        assertTrue("Fourth sample 1x5 grid should have a path!", gridLowestCost.calculatePath());
         assertEquals("Lowest path should have weight 26!", 26, gridLowestCost.getCalculatedWeight());
-        assertArrayEquals("The path should be {1, 1, 1, 1, 1} since there is no path!", new int[]{1, 1, 1, 1, 1}, gridLowestCost.getPathTaken());
+        assertArrayEquals("The path should be {1, 1, 1, 1, 1}!", new int[]{1, 1, 1, 1, 1}, gridLowestCost.getPathTaken());
+    }
+
+    @Test
+    public void when5x1Matrix_shouldFindPath() throws Exception {
+        int[][] testGrid = {
+                {5},
+                {8},
+                {5},
+                {3},
+                {5}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
+
+        assertTrue("Fifth sample 5x1 grid should have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should have weight 3!", 3, gridLowestCost.getCalculatedWeight());
+        assertArrayEquals("The path should be {4}!", new int[]{4}, gridLowestCost.getPathTaken());
     }
 }
