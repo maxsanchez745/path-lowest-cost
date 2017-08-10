@@ -214,4 +214,18 @@ public class GridLowestCostTest {
         assertEquals("Lowest path should have weight 10, even when it's not a full path!", 10, gridLowestCost.getCalculatedWeight());
         assertArrayEquals("The path should be {4, 4}, even when it's not a full path!", new int[]{4, 4}, gridLowestCost.getPathTaken());
     }
+
+    @Test
+    public void whenMatrixWithLargeNumberColumns_shouldNotFindPath() throws Exception {
+        int[][] testGrid = {
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
+
+        assertTrue("Thirteenth grid should have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should have weight 20!", 20, gridLowestCost.getCalculatedWeight());
+        assertArrayEquals("The path should be {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}!", new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, gridLowestCost.getPathTaken());
+    }
 }
