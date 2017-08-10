@@ -19,6 +19,8 @@ public class TreeTest {
         };
         Tree tree = new Tree(simpleGrid);
         TreeNode[] rootNodes = tree.getRootNodes();
-        assertEquals("The accumulated weight of the root nodes should be 0!", 0, rootNodes[0].getAccumulatedWeight());
+        for (int i = 0; i < rootNodes.length; i++) {
+            assertEquals("The accumulated weight of the root nodes should be 0!", 0, rootNodes[i].getAccumulatedWeight());
+        }
     }
 }
