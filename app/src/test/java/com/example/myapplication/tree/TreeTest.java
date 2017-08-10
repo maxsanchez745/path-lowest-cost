@@ -120,4 +120,27 @@ public class TreeTest {
         TreeNode leafNode = middleNode.getChildren()[0];
         assertEquals("The leaf node " + leafNode + "should have accumulatedDepth 2", 2, leafNode.getAccumulatedWeight());
     }
+
+    @Test
+    public void onTreeTestCaseCreation_shouldGenerateAccumulatedWeightOnLeafs() throws Exception {
+        int[][] testGrid = {
+                {3, 4, 1, 2, 8, 6},
+                {6, 1, 8, 2, 7, 4},
+                {5, 9, 3, 9, 9, 5},
+                {8, 4, 1, 3, 2, 6},
+                {3, 7, 2, 8, 6, 4}
+        };
+
+        Tree tree = new Tree(testGrid);
+        tree.generateTree();
+
+        int accumulatedWeightMostLeftLeafNode = tree.getRootNodes()[0]
+                .getChildren()[0]
+                .getChildren()[0]
+                .getChildren()[0]
+                .getChildren()[0]
+                .getChildren()[0].getAccumulatedWeight();
+
+        assertEquals("The most left leaf node should have an accumulated weight of 27", 27, accumulatedWeightMostLeftLeafNode);
+    }
 }
