@@ -21,7 +21,7 @@ public class GridLowestCostTest {
 
         assertTrue("Simple 3x3 grid should have a path!", gridLowestCost.calculatePath());
         assertEquals("Lowest path should have weight 0!", 0, gridLowestCost.getCalculatedWeight());
-        assertArrayEquals("The path should be {1, 0, 1}!", new int[]{1, 0, 1}, gridLowestCost.getPathTaken());
+        assertArrayEquals("The path should be {2, 1, 2}!", new int[]{2, 1, 2}, gridLowestCost.getPathTaken());
     }
 
     @Test
