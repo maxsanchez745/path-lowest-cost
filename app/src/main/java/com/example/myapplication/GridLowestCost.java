@@ -18,14 +18,12 @@ public class GridLowestCost {
 
     private int[][] grid;
 
-    private boolean pathExists;
     private int calculatedWeight;
     private int[] pathTaken;
 
     public GridLowestCost(int[][] grid) {
         this.grid = grid;
 
-        pathExists = false;
         calculatedWeight = 0;
         pathTaken = null;
     }
@@ -34,12 +32,7 @@ public class GridLowestCost {
         Tree tree = new Tree(grid);
         ArrayList<TreeNode> leafs = getLeafs(tree);
 
-        Collections.sort(leafs, new Comparator<TreeNode>() {
-            @Override
-            public int compare(TreeNode t1, TreeNode t2) {
-                return compareFinalWeights(t1, t2);
-            }
-        });
+        Collections.sort(leafs, this::compareFinalWeights);
 
         TreeNode lowestCostNode = leafs.get(0);
         calculatedWeight = lowestCostNode.getAccumulatedWeight() + lowestCostNode.getWeight();
