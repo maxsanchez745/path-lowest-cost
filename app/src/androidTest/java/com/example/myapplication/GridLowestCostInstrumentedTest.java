@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import android.support.test.rule.ActivityTestRule;
 
+import com.example.myapplication.exception.InvalidMatrixException;
+
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -14,9 +16,7 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+
 
 /**
  * Created by user on 8/10/17.
@@ -69,7 +69,33 @@ public class GridLowestCostInstrumentedTest {
         checkHasPathTextView(false);
         checkWeightTextView(49);
         checkPathTakenTextView(Arrays.toString(new int[]{3, 1, 1}));
+    }
 
+    @Test
+    public void when1x5Matrix_shouldFindPath() throws Exception {
+        putMatrixEditText("{5, 8, 5, 3, 5}");
+        clickButton();
+        checkHasPathTextView(true);
+        checkWeightTextView(26);
+        checkPathTakenTextView(Arrays.toString(new int[]{1, 1, 1, 1, 1}));
+    }
+
+    @Test
+    public void when5x1Matrix_shouldFindPath() throws Exception {
+        putMatrixEditText("{5},{8},{5},{3},{5}");
+        clickButton();
+        checkHasPathTextView(true);
+        checkWeightTextView(3);
+        checkPathTakenTextView(Arrays.toString(new int[]{4}));
+    }
+
+    @Test(expected = InvalidMatrixException.class)
+    public void whenNonNumericInput_shouldThrowInvalidMatrixException() throws Exception {
+        putMatrixEditText("{5, 4, H}, {8, M, 7},{5, 7, 5}");
+        clickButton();
+        checkHasPathTextView(true);
+        checkWeightTextView(3);
+        checkPathTakenTextView(Arrays.toString(new int[]{4}));
     }
 
     private void checkHasPathTextView(boolean shouldHavePath) {
