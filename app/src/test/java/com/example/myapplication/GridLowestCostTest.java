@@ -182,4 +182,20 @@ public class GridLowestCostTest {
         assertEquals("Lowest path should have weight 0!", 0, gridLowestCost.getCalculatedWeight());
         assertArrayEquals("The path should be {2, 3, 4, 1}!", new int[]{2, 3, 4, 1}, gridLowestCost.getPathTaken());
     }
+
+    @Test
+    public void whenMatrixWithCompletePathAndLowerIncompletePath_shouldFindPath() throws Exception {
+        int[][] testGrid = {
+                {51, 51},
+                {0, 51},
+                {51, 51},
+                {5, 5}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
+
+        assertTrue("Eleventh sample grid should have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should have weight 10!", 10, gridLowestCost.getCalculatedWeight());
+        assertArrayEquals("The path should be {4, 4}!", new int[]{4, 4}, gridLowestCost.getPathTaken());
+    }
 }
