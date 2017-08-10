@@ -77,7 +77,7 @@ public class TreeHelper {
         }
 
         private void traverseTreeRecursive(TreeNode currentNode) {
-            if (treeNode == null) {
+            if (treeNode == null || treeNode.getAccumulatedWeight() + treeNode.getWeight() > maxValue) {
                 treeNode = currentNode;
                 return;
             }
