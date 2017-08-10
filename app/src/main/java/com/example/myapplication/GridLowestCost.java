@@ -65,6 +65,11 @@ public class GridLowestCost {
 
         TreeNode lowestBeforeMax = TreeHelper.findLowestNodeBeforeMax(tree, MAXIMUM_WEIGHT);
         calculatedWeight = lowestBeforeMax.getAccumulatedWeight() + lowestBeforeMax.getWeight();
+        if (calculatedWeight > 50) {
+            pathTaken = new int[]{};
+            calculatedWeight = 0;
+            return false;
+        }
         pathTaken = traversePath(lowestBeforeMax, TreeHelper.calculateDistanceFromRoot(lowestBeforeMax));
         return false;
     }
