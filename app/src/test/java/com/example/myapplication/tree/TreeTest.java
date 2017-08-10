@@ -1,10 +1,8 @@
 package com.example.myapplication.tree;
 
-import android.support.annotation.NonNull;
-
 import org.junit.Test;
 
-import static com.example.myapplication.util.TreeHelper.getLevels;
+import static com.example.myapplication.util.TreeHelper.getDepth;
 import static com.example.myapplication.util.TreeHelper.getMostLeftNode;
 import static com.example.myapplication.util.TreeHelper.initTree;
 import static org.junit.Assert.*;
@@ -46,7 +44,7 @@ public class TreeTest {
         };
 
         Tree tree = initTree(simpleGrid);
-        int levels = getLevels(tree.getRootNodes()[0]);
+        int levels = getDepth(tree.getRootNodes()[0]);
 
         assertEquals("The 3x3 simpleGrid generated-tree should have 3 levels", 3, levels);
     }
@@ -65,7 +63,7 @@ public class TreeTest {
         };
 
         Tree tree = initTree(largeGrid);
-        int levels = getLevels(tree.getRootNodes()[0]);
+        int levels = getDepth(tree.getRootNodes()[0]);
 
         assertEquals("The 3x8 largeGrid generated-tree should have 3 levels", 3, levels);
     }
@@ -79,7 +77,7 @@ public class TreeTest {
         };
 
         Tree tree = initTree(wideGrid);
-        int levels = getLevels(tree.getRootNodes()[0]);
+        int levels = getDepth(tree.getRootNodes()[0]);
 
         assertEquals("The 8x3 wideGrid generated-tree should have 8 levels", 8, levels);
     }

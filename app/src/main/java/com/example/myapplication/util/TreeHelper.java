@@ -17,7 +17,7 @@ public class TreeHelper {
         return tree;
     }
 
-    public static int getLevels(TreeNode treeNode) {
+    public static int getDepth(TreeNode treeNode) {
         TreeNode rootNodesLeft = treeNode;
         int levels = 1;
         while (rootNodesLeft.getChildren() != null) {
