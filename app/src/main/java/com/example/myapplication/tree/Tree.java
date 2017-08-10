@@ -11,13 +11,15 @@ public class Tree {
 
     public Tree(int[][] grid) {
         this.grid = grid;
-        this.rootNodes = new TreeNode[grid[0].length];
+        this.rootNodes = new TreeNode[grid.length];
 
         initializeRootNodes();
     }
 
     private void initializeRootNodes() {
-
+        for (int i = 0; i < rootNodes.length; i++) {
+            rootNodes[i] = new TreeNode(1, grid[i][0], 0, null);
+        }
     }
 
     public void generateTree() {
