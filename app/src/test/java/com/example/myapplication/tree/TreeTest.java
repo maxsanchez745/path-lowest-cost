@@ -4,10 +4,10 @@ import org.junit.Test;
 
 import static com.example.myapplication.util.TreeHelper.getDepth;
 import static com.example.myapplication.util.TreeHelper.getMostLeftNode;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
- * Created by evin on 8/9/17.
+ * Created by user on 8/9/17.
  */
 public class TreeTest {
     // TODO: 8/9/17
