@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import com.example.myapplication.tree.Tree;
+
 /**
  * Created by evin on 8/9/17.
  */
@@ -22,6 +24,8 @@ public class GridLowestCost {
     }
 
     public boolean calculatePath() {
+        Tree tree = new Tree(grid);
+        tree.generateTree();
         return false;
     }
 
