@@ -1,7 +1,7 @@
 package com.example.myapplication.tree;
 
 /**
- * Created by evin on 8/9/17.
+ * Created by user on 8/9/17.
  */
 
 public class TreeNode {
