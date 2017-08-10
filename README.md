@@ -5,6 +5,8 @@ I solved it generating a B-tree that stored the accumulated weights and possible
 
 You can see below the main unit test suite (I created test cases on some other important classes in the project as well, these can be seen in the [test folder](https://github.com/maxsanchez745/path-lowest-cost/tree/master/app/src/test/java/com/example/myapplication)), I followed the red-green-refactor principle with TDD creating each test case one by one along with its implementation. All the test cases are passing.
 
+Btw, correct me if I'm wrong, but I think that you guys have a small bug in the exercise in test case 3, the instructions say that you should have a path `{1, 1, 1}` and a total weight value of `48`, but if you do `{3, 1, 1}`, you get a higher total weight value `(49)`.
+
 ---
 
     public class GridLowestCostTest {
