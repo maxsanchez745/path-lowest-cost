@@ -99,6 +99,71 @@ public class GridLowestCostInstrumentedTest {
         }
     }
 
+    @Test(expected = InvalidMatrixException.class)
+    public void whenEmptyMatrix_shouldThrowInvalidMatrixException() {
+        putMatrixEditText("");
+
+        try {
+            clickButton();
+        } catch (Exception e) {
+            throw new InvalidMatrixException();
+        }
+    }
+
+    @Test
+    public void whenStartingWithNumbersLargerThanFifty_shouldNotFindPath() throws Exception {
+        putMatrixEditText("{69, 10, 19, 10, 19}, {51, 23, 20, 19, 12}, {60, 12, 20, 11, 10}");
+        clickButton();
+        checkHasPathTextView(false);
+        checkWeightTextView(0);
+        checkPathTakenTextView(Arrays.toString(new int[]{}));
+    }
+
+    @Test
+    public void whenOneValueLargerThanFifty_shouldFindPath() throws Exception {
+        putMatrixEditText("{60, 3, 3, 6}, {6, 3, 7, 9}, {5, 6, 8, 3}");
+        clickButton();
+        checkHasPathTextView(true);
+        checkWeightTextView(14);
+        checkPathTakenTextView(Arrays.toString(new int[]{3, 2, 1, 3}));
+    }
+
+    @Test
+    public void whenMatrixWithNegativeNumbers_shouldFindPath() throws Exception {
+        putMatrixEditText("{6, 3, -5, 9}, {-5, 2, 4, 10}, {3, -2, 6, 10}, {6, -1, -2, 10}");
+        clickButton();
+        checkHasPathTextView(true);
+        checkWeightTextView(0);
+        checkPathTakenTextView(Arrays.toString(new int[]{2, 3, 4, 1}));
+    }
+
+    @Test
+    public void whenMatrixWithCompletePathAndLowerIncompletePath_shouldFindPath() throws Exception {
+        putMatrixEditText("{51, 51}, {0, 51}, {51, 51}, {5, 5}");
+        clickButton();
+        checkHasPathTextView(true);
+        checkWeightTextView(10);
+        checkPathTakenTextView(Arrays.toString(new int[]{4, 4}));
+    }
+
+    @Test
+    public void whenMatrixWithLongerIncompletePathAndShorterLowerCostIncompletePath_shouldNotFindPath() throws Exception {
+        putMatrixEditText("{51, 51, 51}, {0, 51, 51}, {51, 51, 51}, {5, 5, 51}");
+        clickButton();
+        checkHasPathTextView(false);
+        checkWeightTextView(10);
+        checkPathTakenTextView(Arrays.toString(new int[]{4, 4}));
+    }
+
+    @Test
+    public void whenMatrixWithLargeNumberColumns_shouldNotFindPath() throws Exception {
+        putMatrixEditText("{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}");
+        clickButton();
+        checkHasPathTextView(true);
+        checkWeightTextView(20);
+        checkPathTakenTextView(Arrays.toString(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}));
+    }
+
     private void checkHasPathTextView(boolean shouldHavePath) {
         onView(withId(R.id.a_main_has_path))
                 .check(matches(withText(shouldHavePath ? "Yes" : "No")));
