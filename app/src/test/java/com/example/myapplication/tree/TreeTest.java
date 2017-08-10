@@ -72,4 +72,23 @@ public class TreeTest {
 
         assertEquals("The 3x8 largeGrid generated-tree should have 3 levels", 3, levels);
     }
+
+    @Test
+    public void onWideTreeCreation_shouldGenerateDepthLevels() throws Exception {
+        int[][] wideGrid = {
+                {1, 0, 1, 1, 1, 1, 0, 0},
+                {0, 1, 0, 0, 0, 1, 0, 1},
+                {1, 1, 1, 0, 1, 0, 1, 0}
+        };
+        Tree tree = new Tree(wideGrid);
+        tree.generateTree();
+        TreeNode rootNodesLeft = tree.getRootNodes()[0];
+        int levels = 1;
+        while (rootNodesLeft.getChildren() != null) {
+            rootNodesLeft = rootNodesLeft.getChildren()[0];
+            levels++;
+        }
+
+        assertEquals("The 8x3 wideGrid generated-tree should have 8 levels", 8, levels);
+    }
 }
