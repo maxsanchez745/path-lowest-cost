@@ -11,6 +11,8 @@ public class TreeNode {
     private TreeNode[] children;
     private TreeNode parent;
 
+    // TreeNode which will allow us to store different children (B-Tree) and the accumulated weight
+    // in each path, as well as its parent, so the path can be retrived later.
     public TreeNode(int row, int weight, int accumulatedWeight, TreeNode[] children, TreeNode parent) {
         this.row = row;
         this.weight = weight;

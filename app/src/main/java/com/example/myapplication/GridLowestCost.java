@@ -20,6 +20,7 @@ public class GridLowestCost {
     private int calculatedWeight;
     private int[] pathTaken;
 
+    // Constructor that receives a simple bi-dimensional array of integers
     public GridLowestCost(int[][] grid) {
         if (grid.length < 1) {
             throw new InvalidMatrixException();
@@ -30,6 +31,8 @@ public class GridLowestCost {
         pathTaken = null;
     }
 
+    // Constructor that receives a simple bi-dimensional array of Objects,
+    // each value need to be parsed to an Integer
     public GridLowestCost(Object[][] objectGrid) {
         if (objectGrid == null || objectGrid.length < 1) {
             throw new InvalidMatrixException();
@@ -48,6 +51,9 @@ public class GridLowestCost {
         }
     }
 
+    // Tree gets created by looking at the possible values in the grid, when tree is ready
+    // move to test the leafs, and generate an ordered array to get the leaf with the lowest value
+    // which will be "Lowest possible path"
     public boolean calculatePath() {
         Tree tree = new Tree(grid);
         int depth = TreeHelper.getDepth(tree);
@@ -74,6 +80,7 @@ public class GridLowestCost {
         return false;
     }
 
+    // Get the path that the leaf had to go through in the tree
     private int[] traversePath(TreeNode node, int depth) {
         int[] path = new int[depth];
         int i = 0;
@@ -85,18 +92,22 @@ public class GridLowestCost {
         return path;
     }
 
+    // Reversing the array to instead of going from right to left, we go from left to right
     private void reverseArray(int[] path) {
         for (int i = 0; i < path.length / 2; i++) {
             swap(path, i, path.length - 1 - i);
         }
     }
 
+    // Simple swap function
     private void swap(int[] array, int a, int b) {
         int aux = array[a];
         array[a] = array[b];
         array[b] = aux;
     }
 
+    // Used in the comparator to check total weight (current node weight plus accumulated
+    // weight), used to get the lowest possible path (leaf with lowest total weight)
     private int compareFinalWeights(TreeNode t1, TreeNode t2) {
         Integer finalWeight1 = t1.getWeight() + t1.getAccumulatedWeight();
         Integer finalWeight2 = t2.getWeight() + t2.getAccumulatedWeight();

@@ -28,7 +28,6 @@
         android:id="@+id/a_main_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="calculateLowestPath"
         android:text="@string/calculate" />
 
     <TextView

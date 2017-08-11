@@ -6,13 +6,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.myapplication.exception.InvalidMatrixException;
-
 import java.util.Arrays;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,29 +27,32 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.a_main_path_taken)
     TextView textViewPathTaken;
 
-    private GridLowestCost gridLowestCost;
-    private Object[][] grid;
-    private GridParser gridParser;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-
-        gridParser = new GridParser();
     }
 
+    // On click - Get the string from the EditText, parse the input and then calculating the lowest path
+    @OnClick(R.id.a_main_btn)
     public void calculateLowestPath(View view) {
-        grid = gridParser.parse(editText.getText().toString());
-        generateLowestPath();
+        final String input = editText.getText().toString();
+        Object[][] grid = parseInput(input);
+        generateLowestPath(grid);
     }
 
-    private void generateLowestPath() {
+    // Parse a string (EditText input) to be a grid of Objects
+    private Object[][] parseInput(String input) {
+        GridParser gridParser = new GridParser();
+        return gridParser.parse(input);
+    }
+
+    // Calculates the lowest path with help of the GridLowestCost helper
+    private void generateLowestPath(Object[][] grid) {
         try {
-            gridLowestCost = new GridLowestCost(grid);
+            GridLowestCost gridLowestCost = new GridLowestCost(grid);
             gridLowestCost.calculatePath();
 
             boolean pathExists = gridLowestCost.calculatePath();

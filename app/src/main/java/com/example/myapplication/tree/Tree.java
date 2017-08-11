@@ -11,6 +11,7 @@ public class Tree {
 
     private TreeNode[] rootNodes;
 
+    // Tree constructor, creating the children depending on the length of the grid
     public Tree(int[][] grid) {
         this.grid = grid;
         this.rootNodes = new TreeNode[grid.length];
@@ -19,12 +20,15 @@ public class Tree {
         createChildren(rootNodes, 0);
     }
 
+    // Initializing the toot Nodes of the tree depending on the length of the grid
     private void initializeRootNodes() {
         for (int i = 0; i < rootNodes.length; i++) {
             rootNodes[i] = new TreeNode(i, grid[i][0], 0, null, null);
         }
     }
 
+    // Creates the children of an array of TreeNodes depending on the column, which will keep
+    // increasing per each iteration
     private void createChildren(TreeNode[] treeNodes, int column) {
         if (column + 1 >= grid[0].length) {
             return;
@@ -39,32 +43,41 @@ public class Tree {
         }
     }
 
+    // Creating a new childNode based on the current column, the currentNode (which will be the
+    // parent of the node created) and the
     @NonNull
-    private TreeNode generateChildNode(int column, TreeNode currentNode, int j) {
+    private TreeNode generateChildNode(int column, TreeNode currentNode, int verticalPositionNextNode) {
         final int row = currentNode.getRow();
         final int weight = currentNode.getWeight();
         final int accumulatedWeight = currentNode.getAccumulatedWeight();
-        final int newRow = calculateNewRow(row, j);
+        final int newRow = calculateNewRow(row, verticalPositionNextNode);
         final int newWeight = getWeight(newRow, column + 1);
         return new TreeNode(newRow, newWeight, weight + accumulatedWeight, null, currentNode);
     }
 
-    private int calculateNewRow(int row, int j) {
-        switch (j) {
+    // Calculate the new row depending on the value of adjacent row, if the value is 0 means
+    // that you will try to get the left-up cell, if the value is 1 means you will get the cell
+    // right next to the current cell, if the value is 2 it means you are trying to get the right-down
+    // cell. This method basically checks if there will be an overflown (to make the matrix wrap if
+    // the current value is the bottom one and you want to go down)
+    private int calculateNewRow(int row, int verticalPositionNextNode) {
+        int newRow = row;
+        switch (verticalPositionNextNode) {
             case 0: // Up - right cell
                 if (row == 0) {
-                    return grid.length - 1; // Overflow up
+                    newRow = grid.length - 1; // Overflow up, go to the most bottom row
                 } else {
-                    return row - 1;
+                    newRow = row - 1;
                 }
+                break;
             case 2: // Bottom - right cell
                 if (row == grid.length - 1) {
-                    return 0;
+                    newRow = 0; // Overflow down, go to the most top row
                 } else {
-                    return row + 1;
+                    newRow = row + 1;
                 }
         }
-        return row;
+        return newRow;
     }
 
     private int getWeight(int row, int column) {
