@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
  */
 
 public class Tree {
+    private static final int UP = 0;
+    private static final int DOWN = 2;
+
     private int[][] grid;
 
     private TreeNode[] rootNodes;
@@ -62,20 +65,18 @@ public class Tree {
     // the current value is the bottom one and you want to go down)
     private int calculateNewRow(int row, int verticalPositionNextNode) {
         int newRow = row;
-        switch (verticalPositionNextNode) {
-            case 0: // Up - right cell
-                if (row == 0) {
-                    newRow = grid.length - 1; // Overflow up, go to the most bottom row
-                } else {
-                    newRow = row - 1;
-                }
-                break;
-            case 2: // Bottom - right cell
-                if (row == grid.length - 1) {
-                    newRow = 0; // Overflow down, go to the most top row
-                } else {
-                    newRow = row + 1;
-                }
+        if (verticalPositionNextNode == UP) {
+            if (row == 0) {
+                newRow = grid.length - 1; // Overflow up, go to the most bottom row
+            } else {
+                newRow = row - 1;
+            }
+        } else if (verticalPositionNextNode == DOWN) {
+            if (row == grid.length - 1) {
+                newRow = 0; // Overflow down, go to the most top row
+            } else {
+                newRow = row + 1;
+            }
         }
         return newRow;
     }
