@@ -89,25 +89,20 @@ public class GridLowestCostInstrumentedTest {
         checkPathTakenTextView(Arrays.toString(new int[]{4}));
     }
 
-    @Test(expected = InvalidMatrixException.class)
+    @Test
     public void whenNonNumericInput_shouldThrowInvalidMatrixException() throws Exception {
         putMatrixEditText("{5, 4, H}, {8, M, 7},{5, 7, 5}");
-        try {
-            clickButton();
-        } catch (Exception e) {
-            throw new InvalidMatrixException();
-        }
+        clickButton();
+        onView(withId(R.id.a_main_has_path))
+                .check(matches(withText(R.string.invalid_matrix)));
     }
 
-    @Test(expected = InvalidMatrixException.class)
+    @Test
     public void whenEmptyMatrix_shouldThrowInvalidMatrixException() {
         putMatrixEditText("");
-
-        try {
-            clickButton();
-        } catch (Exception e) {
-            throw new InvalidMatrixException();
-        }
+        clickButton();
+        onView(withId(R.id.a_main_has_path))
+                .check(matches(withText(R.string.invalid_matrix)));
     }
 
     @Test

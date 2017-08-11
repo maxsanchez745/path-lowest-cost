@@ -52,14 +52,15 @@ public class MainActivity extends AppCompatActivity {
         try {
             gridLowestCost = new GridLowestCost(grid);
             gridLowestCost.calculatePath();
-        } catch (Exception e) {
-            throw new InvalidMatrixException();
-        }
-        boolean pathExists = gridLowestCost.calculatePath();
 
-        textViewHasPath.setText(pathExists ? "Yes" : "No");
-        textViewWeight.setText(String.format(Locale.getDefault(), "%d", gridLowestCost.getCalculatedWeight()));
-        final int[] pathTaken = gridLowestCost.getPathTaken();
-        textViewPathTaken.setText(Arrays.toString(pathTaken));
+            boolean pathExists = gridLowestCost.calculatePath();
+
+            textViewHasPath.setText(pathExists ? "Yes" : "No");
+            textViewWeight.setText(String.format(Locale.getDefault(), "%d", gridLowestCost.getCalculatedWeight()));
+            final int[] pathTaken = gridLowestCost.getPathTaken();
+            textViewPathTaken.setText(Arrays.toString(pathTaken));
+        } catch (Exception e) {
+            textViewHasPath.setText(R.string.invalid_matrix);
+        }
     }
 }
