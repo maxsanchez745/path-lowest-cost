@@ -56,6 +56,12 @@ public class GridLowestCost {
     // which will be "Lowest possible path"
     public boolean calculatePath() {
         Tree tree = new Tree(grid);
+
+        if (!hasRootsLowerMaxValue(tree)) {
+            pathTaken = new int[]{};
+            return false;
+        }
+
         int depth = TreeHelper.getDepth(tree);
         ArrayList<TreeNode> leafs = TreeHelper.getLeafs(tree);
 
@@ -77,6 +83,16 @@ public class GridLowestCost {
             return false;
         }
         pathTaken = traversePath(lowestBeforeMax, TreeHelper.calculateDistanceFromRoot(lowestBeforeMax));
+        return false;
+    }
+
+    // Early out check that validates that the Tree has at least 1 valid root node
+    private boolean hasRootsLowerMaxValue(Tree tree) {
+        for (TreeNode treeNode : tree.getRootNodes()) {
+            if (treeNode.getWeight() < 50) {
+                return true;
+            }
+        }
         return false;
     }
 

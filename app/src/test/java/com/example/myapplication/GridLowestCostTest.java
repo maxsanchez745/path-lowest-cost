@@ -228,4 +228,17 @@ public class GridLowestCostTest {
         assertEquals("Lowest path should have weight 20!", 20, gridLowestCost.getCalculatedWeight());
         assertArrayEquals("The path should be {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}!", new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, gridLowestCost.getPathTaken());
     }
+
+    @Test
+    public void whenMatrixSingleNonValidLine_shouldNotFindPath() throws Exception {
+        int[][] testGrid = {
+                {51, -7, 3}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
+
+        assertFalse("Fourteenth grid should NOT have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should be 0!", 0, gridLowestCost.getCalculatedWeight());
+        assertArrayEquals("The path should be {}!", new int[]{}, gridLowestCost.getPathTaken());
+    }
 }
