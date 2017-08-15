@@ -2,8 +2,6 @@ package com.example.myapplication;
 
 import android.support.test.rule.ActivityTestRule;
 
-import com.example.myapplication.exception.InvalidMatrixException;
-
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -157,6 +155,15 @@ public class GridLowestCostInstrumentedTest {
         checkHasPathTextView(true);
         checkWeightTextView(20);
         checkPathTakenTextView(Arrays.toString(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}));
+    }
+
+    @Test
+    public void whenMatrixSingleNonValidLine_shouldNotFindPath() throws Exception {
+        putMatrixEditText("{51, -7, 3}");
+        clickButton();
+        checkHasPathTextView(false);
+        checkWeightTextView(0);
+        checkPathTakenTextView(Arrays.toString(new int[]{}));
     }
 
     private void checkHasPathTextView(boolean shouldHavePath) {
