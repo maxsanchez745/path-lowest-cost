@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static com.example.myapplication.util.TreeHelper.getDepth;
 import static com.example.myapplication.util.TreeHelper.getMostLeftNode;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -127,5 +128,16 @@ public class TreeTest {
         int accumulatedWeightMostLeftLeafNode = mostLeftNode.getAccumulatedWeight();
 
         assertEquals("The most left leaf node should have an accumulated weight of 27", 27, accumulatedWeightMostLeftLeafNode);
+    }
+
+    @Test
+    public void onSimpleTreeSmallerThanTwoRows_shouldPrintValidPath() throws Exception {
+        int[][] testGrid = {
+                {3, 4, 1, 2, 8, 6},
+                {6, 1, 8, 2, 7, 4},
+        };
+
+        Tree tree = new Tree(testGrid);
+        assertArrayEquals("Should return 0, 1, 0, 0, 1, 1 on simple grid length < 3", new int[]{0, 1, 0, 0, 1, 1}, tree.generateLowestPathArray());
     }
 }
