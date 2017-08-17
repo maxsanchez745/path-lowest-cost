@@ -168,11 +168,11 @@ public class GridLowestCostInstrumentedTest {
 
     @Test
     public void whenSimpleMatrixWithLargeNumberColumns_shouldFindPath() throws Exception {
-        putMatrixEditText("{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}");
+        putMatrixEditText("{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}");
         clickButton();
         checkHasPathTextView(true);
-        checkWeightTextView(20);
-        checkPathTakenTextView(Arrays.toString(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}));
+        checkWeightTextView(24);
+        checkPathTakenTextView(Arrays.toString(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}));
     }
 
     private void checkHasPathTextView(boolean shouldHavePath) {
