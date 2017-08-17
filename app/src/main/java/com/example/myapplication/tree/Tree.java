@@ -1,6 +1,7 @@
 package com.example.myapplication.tree;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 
 /**
  * Created by user on 8/9/17.
@@ -20,7 +21,29 @@ public class Tree {
         this.rootNodes = new TreeNode[grid.length];
 
         initializeRootNodes();
-        createChildren(rootNodes, 0);
+        if (rootNodes.length > 2) {
+            createChildren(rootNodes, 0);
+        } else { // Early-out case when there are either one or 2 columns
+            this.rootNodes = new TreeNode[1];
+            int[] lowestArray = generateLowestPathArray();
+        }
+    }
+
+    int[] generateLowestPathArray() {
+        int[] lowestArray = new int[grid[0].length];
+        for (int i = 0; i < grid[0].length; i++) {
+            int minIndex = 0;
+            for (int j = 0; j < grid.length; j++) {
+                final int i1 = grid[j][i];
+                final int i2 = grid[minIndex][i];
+                if (i1 < i2) {
+                    minIndex = j;
+                }
+            }
+            lowestArray[i] = minIndex;
+        }
+
+        return lowestArray;
     }
 
     // Initializing the toot Nodes of the tree depending on the length of the grid
@@ -28,6 +51,10 @@ public class Tree {
         for (int i = 0; i < rootNodes.length; i++) {
             rootNodes[i] = new TreeNode(i, grid[i][0], 0, null, null);
         }
+    }
+
+    private void createChildrenSimple(TreeNode[] rootNodes) {
+
     }
 
     // Creates the children of an array of TreeNodes depending on the column, which will keep
