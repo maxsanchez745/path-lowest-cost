@@ -31,16 +31,14 @@ public class Tree {
 
     int[] generateLowestPathArray() {
         int[] lowestArray = new int[grid[0].length];
-        for (int i = 0; i < grid[0].length; i++) {
-            int minIndex = 0;
-            for (int j = 0; j < grid.length; j++) {
-                final int i1 = grid[j][i];
-                final int i2 = grid[minIndex][i];
-                if (i1 < i2) {
-                    minIndex = j;
+        for (int column = 0; column < grid[0].length; column++) {
+            int minRowIndex = 0;
+            for (int row = 0; row < grid.length; row++) {
+                if (grid[row][column] < grid[minRowIndex][column]) {
+                    minRowIndex = row;
                 }
             }
-            lowestArray[i] = minIndex;
+            lowestArray[column] = minRowIndex;
         }
 
         return lowestArray;
