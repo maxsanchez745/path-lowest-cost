@@ -216,7 +216,7 @@ public class GridLowestCostTest {
     }
 
     @Test
-    public void whenMatrixWithLargeNumberColumns_shouldNotFindPath() throws Exception {
+    public void whenMatrixWithLargeNumberColumns_shouldFindPath() throws Exception {
         int[][] testGrid = {
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
@@ -240,5 +240,19 @@ public class GridLowestCostTest {
         assertFalse("Fourteenth grid should NOT have a path!", gridLowestCost.calculatePath());
         assertEquals("Lowest path should be 0!", 0, gridLowestCost.getCalculatedWeight());
         assertArrayEquals("The path should be {}!", new int[]{}, gridLowestCost.getPathTaken());
+    }
+
+    @Test
+    public void whenSimpleMatrixWithLargeNumberColumns_shouldFindPath() throws Exception {
+        int[][] testGrid = {
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
+        };
+
+        GridLowestCost gridLowestCost = new GridLowestCost(testGrid);
+
+        assertTrue("Thirteenth grid should have a path!", gridLowestCost.calculatePath());
+        assertEquals("Lowest path should have weight 24!", 24, gridLowestCost.getCalculatedWeight());
+        assertArrayEquals("The path should be {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}!", new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, gridLowestCost.getPathTaken());
     }
 }
